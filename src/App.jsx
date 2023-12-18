@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 
 const API_URL = "https://api.unsplash.com/search/photos";
-const IMAGES_PER_PAGE = 6;
+const IMAGES_PER_PAGE = 12;
 
 function App() {
   const searchInput = useRef(null);
@@ -16,7 +16,7 @@ function App() {
   const fetchImages = useCallback(async () => {
     try {
       if (searchInput.current.value) {
-        setErrorMsg('');
+        setErrorMsg("");
         const { data } = await axios.get(
           `${API_URL}?query=${
             searchInput.current.value
@@ -28,7 +28,7 @@ function App() {
         setTotalPages(data.total_pages);
       }
     } catch (error) {
-      setErrorMsg("Error fetching Images.Please try again later.")
+      setErrorMsg("Error fetching Images.Please try again later.");
       console.log(error);
     }
   }, [page]);
